@@ -2,7 +2,7 @@ object FForm: TFForm
   Left = 0
   Top = 0
   BorderStyle = bsToolWindow
-  Caption = 'Integra'#231#227'o DocFiscAll'
+  Caption = 'elastic4d'
   ClientHeight = 423
   ClientWidth = 1001
   Color = clBtnFace
@@ -19,7 +19,7 @@ object FForm: TFForm
     Top = 8
     Width = 128
     Height = 13
-    Caption = 'Emiss'#227'o NFCE - Requisi'#231#227'o'
+    Caption = 'elastic4d'
   end
   object FLabelResponse: TLabel
     Left = 344
@@ -40,60 +40,7 @@ object FForm: TFForm
     Top = 27
     Width = 313
     Height = 357
-    Lines.Strings = (
-      '{'
-      '    "RP": "99999991",'
-      '    "_id": "270220241432",'
-      '    "codigoDaReserva": "123",'
-      '    "dataCompetencia": "2024-02-27",'
-      '    "dataEmissao": "2024-02-27",'
-      '    "destinatario": {'
-      '            "endereco": {'
-      '                    "bairro": "Cidade de Deus",'
-      '                    "codMunicipioIBGE": "1302603",'
-      '                    "logradouro": "Rua Jutic'#225'",'
-      '                    "nomeCidade": "Manaus",'
-      '                    "uf": "AM"'
-      '            },'
-      '            "nome": "Theo Xavier Jr.",'
-      '            "numDocumento": "72345042656",'
-      '            "retemServico": false'
-      '    },'
-      '    "itens": ['
-      '            {'
-      '                    "codigoCEST": "0302100",'
-      '                    "codigoEAN": "78906938",'
-      '                    "codigoEANTributavel": "78906938",'
-      '                    "codigoNCM": "22030000",'
-      '                    "codigoProduto": "003",'
-      '                    "descricaoProduto": "CERVEJA HEINEKEN '
-      '355ML",'
-      '                    "indicadorTotal": "itCompoeValorNota",'
-      '                    "outrosValores": 333,'
-      '                    "quantidade": 10,'
-      '                    "quantidadeTributavel": 10,'
-      '                    "unidadeMedida": "UN",'
-      '                    "unidadeMedidaTributavel": "UN",'
-      '                    "valorUnitario": 333,'
-      '                    "valorUnitarioTributavel": 333'
-      '            }'
-      '    ],'
-      '    "pagamentos": ['
-      '            {'
-      '                    "bandeiraCartao": "boVisa",'
-      '                    "cnpjCredenciadora": "01027058000191",'
-      '                    "codigoAutorizacao": "3955155",'
-      '                    "forma": "fpCartaoCredito",'
-      '                    "nsuTransacao": "4222297",'
-      '                    "tipoIntegracao": "tipPOS",'
-      '                    "tipoIntegracaoPagamento": "tipPOS",'
-      '                    "valor": 3663'
-      '            }'
-      '    ],'
-      '    "serie": "107",'
-      '    "valorTotalNF": 3663,'
-      '    "valorTroco": 0'
-      '}')
+    Lines.Strings = ()
     ScrollBars = ssVertical
     TabOrder = 0
   end
