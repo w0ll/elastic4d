@@ -77,21 +77,10 @@ procedure TFForm.EnviarLog;
 begin
   MontarLog;
   FMemoResponseElastic.Lines.Add(
-    Elastic4DAWSRequest
-      .AccessKey(FSampleResources.AccessKey)
+    Elastic4DRequest
       .CanonicalURI(FSampleResources.CanonicalURI)
-      .CanonicalQuery(FSampleResources.CanonicalQuery)
       .Host(FSampleResources.Host)
-      .Region(FSampleResources.Region)
-      .Service(FSampleResources.Service)
-      .SecretKey(FSampleResources.SecretKey)
       .Execute(FLog));
-
-//  FMemoResponseElastic.Lines.Add(
-//    Elastic4DRequest
-//      .CanonicalURI(FSampleResources.CanonicalURI)
-//      .Host(FSampleResources.Host)
-//      .Execute(FLog));
 end;
 
 procedure TFForm.FButtonCEPClick(Sender: TObject);
@@ -101,7 +90,7 @@ end;
 
 procedure TFForm.FButtonEnviarNFCeClick(Sender: TObject);
 begin
-  Iniciar('emissão de NFCe', EmitirNFCe);
+  Iniciar('emissÃ£o de NFCe', EmitirNFCe);
 end;
 
 procedure TFForm.FButtonListarNFCeClick(Sender: TObject);
@@ -185,11 +174,9 @@ begin
   LRequest := TRESTRequest.Create(nil);
   LResponse := TRESTResponse.Create(nil);
   try
-    Sleep(1000 + Random(2000));//BUSCA NO BANCO
     FMethod := 'GET';
     Log('Preparando listagem de NFCe pelo DocFiscAll');
     LClient.BaseURL := FSampleResources.ListarNFCeURL;
-//    LClient.BaseURL := 'elastic4d';
     FPath := LClient.BaseURL;
 
     LRequest.Client := LClient;
@@ -198,7 +185,6 @@ begin
     LRequest.Params.AddItem('Authorization', 'Bearer ' + Token,
       pkHTTPHEADER, [poDoNotEncode]);
     LRequest.Params.AddItem('ambiente', 'taHomologacao', pkHTTPHEADER,
-//    LRequest.Params.AddItem('ambiente', 'elastic4d', pkHTTPHEADER,
       [poDoNotEncode]);
     LRequest.Execute;
 
@@ -247,7 +233,6 @@ begin
     FMethod := 'GET';
     Log('Preparando consulta de CEP pelo Viacep');
     LClient.BaseURL := Format('http://viacep.com.br/ws/%s/json/', [FEditCEP.Text]);
-//    LClient.BaseURL := 'elastic4d';
 
     FPath := LClient.BaseURL;
     LRequest.Client := LClient;
@@ -283,11 +268,9 @@ begin
   LRequest := TRESTRequest.Create(nil);
   LResponse := TRESTResponse.Create(nil);
   try
-    Sleep(1000 + Random(2000));//BUSCA NO BANCO
     FMethod := 'POST';
-    Log('Preparando emissão da NFCe pelo DocFiscAll');
+    Log('Preparando emissÃ£o da NFCe pelo DocFiscAll');
     LClient.BaseURL := FSampleResources.EmitirNFCeURL;
-//    LClient.BaseURL := 'elastic4d';
     FPath := LClient.BaseURL;
 
     LRequest.Client := LClient;
@@ -296,13 +279,11 @@ begin
     LRequest.Params.AddItem('Authorization', 'Bearer ' + Token,
       pkHTTPHEADER, [poDoNotEncode]);
     LRequest.Params.AddItem('ambiente', 'taHomologacao', pkHTTPHEADER,
-//    LRequest.Params.AddItem('ambiente', 'elastic4d', pkHTTPHEADER,
       [poDoNotEncode]);
 
     FRequest := FMemoRequest.Lines.Text;
     LJsonBody := TJSONObject.ParseJSONValue(FRequest) as TJSONObject;
     LRequest.Body.Add(LJsonBody.ToString, ctAPPLICATION_JSON);
-//    LRequest.Body.Add('elastic4d', ctAPPLICATION_JSON);
     LRequest.Execute;
 
     LJsonResponse := LResponse.JSONValue as TJSONObject;
@@ -311,10 +292,9 @@ begin
     if LResponse.StatusCode > 299 then
       raise Exception.Create(FResponse);
 
-    Log('Emissão de NFCe feita com sucesso');
+    Log('EmissÃ£o de NFCe feita com sucesso');
     FMemoResponse.Lines.Add(Format('Response(%s): %s', [FStatus,
       TJson.Format(LJsonResponse)]));
-    Sleep(1000 + Random(2000));//REGISTRO NO BANCO
   finally
     LClient.Free;
     LRequest.Free;
@@ -338,22 +318,20 @@ begin
   LRequest := TRESTRequest.Create(nil);
   LResponse := TRESTResponse.Create(nil);
   try
-    Log('Preparando requisição para gerar token');
+    Log('Preparando requisiÃ§Ã£o para gerar token');
     LClient.BaseURL := FSampleResources.TokenURL;
-//    LClient.BaseURL := 'elastic4d';
 
     LRequest.Client := LClient;
     LRequest.Response := LResponse;
     LRequest.Method := TRESTRequestMethod.rmPOST;
     LRequest.Body.Add(FSampleResources.TokenRequestBody, ctAPPLICATION_JSON);
-//    LRequest.Body.Add('elastic4d', ctAPPLICATION_JSON);
     LRequest.Execute;
 
     LJsonResponse := LResponse.JSONValue as TJSONObject;
     if LResponse.StatusCode > 299 then
-      raise Exception.Create('Erro ao gerar token de autenticação');
+      raise Exception.Create('Erro ao gerar token de autenticaÃ§Ã£o');
 
-    Log('Geração do token feita com sucesso');
+    Log('GeraÃ§Ã£o do token feita com sucesso');
     Result := LJsonResponse.GetValue('token').ToString;
     Result := Result.Replace('"', EmptyStr);
   finally
