@@ -1,0 +1,17 @@
+{
+    "AccessKey": "",
+    "SecretKey": "",
+    "CanonicalURI": "",
+    "CanonicalQuery": "",
+    "Region": "",
+    "Service": "",
+    "Host": "",
+    "ListarNFCeURL": "",
+    "EmitirNFCeURL": "",
+    "TokenURL": "",
+    "TokenRequestBody":
+    {
+        "clientId": "",
+        "clientSecret": ""
+    }
+}
