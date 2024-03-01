@@ -1,5 +1,5 @@
-# elastic4d
-Para funcionamento do projeto, é necessário mover o arquivo **SampleResources.json** para o mesmo diretorio do executável.\
+g# elastic4d
+Para funcionamento do projeto, é necessário mover o arquivo **SampleResources.json**, devidamente preenchido, para o mesmo diretorio do executável.\
 Ex.: Elastic4Delphi\Sample\Win32\Debug\
 ## Sample de envio de requisições para elasticsearch/opensearch
 ### AWS
